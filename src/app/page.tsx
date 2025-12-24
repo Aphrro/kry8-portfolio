@@ -7,11 +7,13 @@ import Services from "@/components/sections/Services"
 import Pricing from "@/components/sections/Pricing"
 import Contact from "@/components/sections/Contact"
 import JsonLd from "@/components/seo/JsonLd"
+import AnimatedBackground from "@/components/ui/AnimatedBackground"
 
 export default function Home() {
   return (
     <>
       <JsonLd />
+      <AnimatedBackground />
       <Navbar />
       <main id="main-content">
         <Hero />
