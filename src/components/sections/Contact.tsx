@@ -3,12 +3,19 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, Send, CheckCircle, AlertCircle } from 'lucide-react'
+import { z } from 'zod'
 import { siteConfig } from '@/lib/data'
 import SectionTitle from '../ui/SectionTitle'
 import GlassCard from '../ui/GlassCard'
 import Button from '../ui/Button'
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
+
+// API response validation schema
+const apiResponseSchema = z.object({
+  ok: z.boolean(),
+  error: z.string().optional(),
+})
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -40,7 +47,16 @@ export default function Contact() {
         }),
       })
 
-      const data = await response.json()
+      const rawData = await response.json()
+      const parseResult = apiResponseSchema.safeParse(rawData)
+
+      if (!parseResult.success) {
+        console.error('Invalid API response:', parseResult.error)
+        setStatus('error')
+        return
+      }
+
+      const data = parseResult.data
 
       if (data.ok) {
         setStatus('success')
@@ -241,9 +257,9 @@ export default function Contact() {
                   )}
 
                   <Button
+                    type="submit"
                     className="w-full"
-                    icon
-                    onClick={status === 'submitting' ? undefined : undefined}
+                    disabled={status === 'submitting'}
                   >
                     {status === 'submitting' ? (
                       <>

@@ -1,3 +1,13 @@
+// Type-safe icon names for services
+export type ServiceIconName = 'Globe' | 'Smartphone' | 'Rocket'
+
+export interface Service {
+  icon: ServiceIconName
+  title: string
+  description: string
+  features: string[]
+}
+
 export const siteConfig = {
   name: "KRY8",
   title: "Développeur Web & Créateur de Solutions SaaS",
@@ -50,7 +60,7 @@ export const projects = [
   },
 ]
 
-export const services = [
+export const services: Service[] = [
   {
     icon: "Globe",
     title: "Sites Vitrine",

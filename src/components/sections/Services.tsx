@@ -1,12 +1,13 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Globe, Smartphone, Rocket } from 'lucide-react'
-import { services } from '@/lib/data'
+import { Globe, Smartphone, Rocket, type LucideIcon } from 'lucide-react'
+import { services, type ServiceIconName } from '@/lib/data'
 import SectionTitle from '../ui/SectionTitle'
 import GlassCard from '../ui/GlassCard'
 
-const iconMap: Record<string, React.ElementType> = {
+// Type-safe icon mapping
+const iconMap: Record<ServiceIconName, LucideIcon> = {
   Globe,
   Smartphone,
   Rocket,
@@ -41,7 +42,7 @@ export default function Services() {
           className="grid md:grid-cols-3 gap-6 lg:gap-8"
         >
           {services.map((service) => {
-            const Icon = iconMap[service.icon] || Globe
+            const Icon = iconMap[service.icon]
 
             return (
               <motion.div key={service.title} variants={item}>

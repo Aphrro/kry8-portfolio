@@ -12,6 +12,7 @@ interface ButtonProps {
   icon?: boolean
   ariaLabel?: string
   type?: 'button' | 'submit' | 'reset'
+  disabled?: boolean
 }
 
 export default function Button({
@@ -23,8 +24,9 @@ export default function Button({
   icon = false,
   ariaLabel,
   type = 'button',
+  disabled = false,
 }: ButtonProps) {
-  const baseStyles = 'inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary'
+  const baseStyles = 'inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none'
 
   const variants = {
     primary: 'glow-button text-primary hover:scale-105',
@@ -39,10 +41,12 @@ export default function Button({
       href={href}
       onClick={onClick}
       type={href ? undefined : type}
+      disabled={href ? undefined : disabled}
       className={`${baseStyles} ${variants[variant]} ${className}`}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
+      whileHover={disabled ? undefined : { scale: 1.02 }}
+      whileTap={disabled ? undefined : { scale: 0.98 }}
       aria-label={ariaLabel}
+      aria-disabled={disabled}
     >
       {children}
       {icon && <ArrowUpRight className="w-4 h-4" aria-hidden="true" />}
