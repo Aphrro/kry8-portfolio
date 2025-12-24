@@ -69,68 +69,41 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Right content - Browser mockup */}
+          {/* Right content - Floating mockups */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="relative hidden lg:block"
           >
-            {/* Browser window mockup */}
+            {/* Main card mockup */}
             <motion.div
               className="relative z-10"
-              animate={{ y: [0, -10, 0] }}
+              animate={{ y: [0, -15, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             >
-              <div className="glass-card p-0 overflow-hidden max-w-md ml-auto">
-                {/* Browser chrome */}
-                <div className="flex items-center gap-2 px-4 py-3 bg-white/5 border-b border-white/10">
-                  <div className="flex gap-1.5">
-                    <div className="w-3 h-3 rounded-full bg-red-500/60" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
-                    <div className="w-3 h-3 rounded-full bg-green-500/60" />
+              <div className="glass-card p-6 max-w-sm ml-auto">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center">
+                    <span className="text-primary font-bold">K8</span>
                   </div>
-                  <div className="flex-1 mx-4">
-                    <div className="bg-white/10 rounded-md px-3 py-1.5 text-xs text-text-secondary flex items-center gap-2">
-                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                      </svg>
-                      suryoodaya.com
-                    </div>
+                  <div>
+                    <p className="text-white font-semibold">KRY8 Studio</p>
+                    <p className="text-text-secondary text-sm">Next.js Expert</p>
                   </div>
                 </div>
-                {/* Website preview */}
-                <div className="p-4 bg-gradient-to-br from-amber-900/20 to-orange-900/10 min-h-[200px]">
-                  {/* Header */}
-                  <div className="flex justify-between items-center mb-6">
-                    <div className="text-amber-400 font-semibold text-sm">Suryoodaya</div>
-                    <div className="flex gap-3">
-                      <div className="w-8 h-1.5 bg-white/20 rounded" />
-                      <div className="w-8 h-1.5 bg-white/20 rounded" />
-                      <div className="w-8 h-1.5 bg-white/20 rounded" />
-                    </div>
-                  </div>
-                  {/* Hero section mockup */}
-                  <div className="space-y-3">
-                    <div className="h-3 bg-white/20 rounded w-3/4" />
-                    <div className="h-3 bg-white/15 rounded w-1/2" />
-                    <div className="h-2 bg-white/10 rounded w-2/3 mt-4" />
-                    <div className="h-2 bg-white/10 rounded w-1/2" />
-                  </div>
-                  {/* CTA button mockup */}
-                  <div className="mt-6">
-                    <div className="inline-block px-4 py-2 bg-amber-500/30 rounded-lg">
-                      <div className="w-16 h-2 bg-amber-400/50 rounded" />
-                    </div>
-                  </div>
+                <div className="space-y-2">
+                  <div className="h-2 bg-white/10 rounded-full w-full" />
+                  <div className="h-2 bg-white/10 rounded-full w-4/5" />
+                  <div className="h-2 bg-white/10 rounded-full w-3/5" />
                 </div>
               </div>
             </motion.div>
 
-            {/* Floating card - Projet livré (top left, bien séparé) */}
+            {/* Secondary floating card - Projet livré */}
             <motion.div
-              className="absolute -top-8 -left-16 z-20"
-              animate={{ y: [0, 8, 0] }}
+              className="absolute -top-4 left-8 z-20"
+              animate={{ y: [0, 10, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
             >
               <div className="glass-card p-4">
@@ -146,10 +119,10 @@ export default function Hero() {
               </div>
             </motion.div>
 
-            {/* Tech stack floating card (bottom, bien séparé) */}
+            {/* Tech stack floating card */}
             <motion.div
-              className="absolute -bottom-20 left-0 z-20"
-              animate={{ y: [0, -8, 0] }}
+              className="absolute -bottom-16 left-4 z-20"
+              animate={{ y: [0, -10, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
             >
               <div className="glass-card p-3 flex gap-2">
@@ -166,8 +139,8 @@ export default function Hero() {
 
             {/* Decorative sphere */}
             <motion.div
-              className="absolute -top-12 right-4 w-20 h-20 rounded-full bg-gradient-to-br from-accent/30 to-transparent blur-sm"
-              animate={{ scale: [1, 1.15, 1] }}
+              className="absolute -top-8 right-0 w-24 h-24 rounded-full bg-gradient-to-br from-accent/40 to-transparent blur-sm"
+              animate={{ scale: [1, 1.1, 1] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />
           </motion.div>
