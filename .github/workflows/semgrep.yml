@@ -1,0 +1,42 @@
+name: "Semgrep SAST"
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  semgrep:
+    name: Semgrep Scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    container:
+      image: semgrep/semgrep
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Semgrep
+        run: semgrep scan --config auto --config p/owasp-top-ten --config p/react --config p/nextjs --error --json --output semgrep-results.json .
+        continue-on-error: true
+
+      - name: Upload Semgrep results
+        uses: actions/upload-artifact@v4
+        with:
+          name: semgrep-results
+          path: semgrep-results.json
+          retention-days: 30
+
+      - name: Fail on high severity findings
+        run: |
+          if [ -f semgrep-results.json ]; then
+            HIGH_COUNT=$(cat semgrep-results.json | jq '[.results[] | select(.extra.severity == "ERROR")] | length')
+            if [ "$HIGH_COUNT" -gt 0 ]; then
+              echo "Found $HIGH_COUNT high severity issues"
+              cat semgrep-results.json | jq '.results[] | select(.extra.severity == "ERROR")'
+              exit 1
+            fi
+          fi
