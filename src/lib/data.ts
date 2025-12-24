@@ -31,7 +31,7 @@ export const projects = [
     description: "Site vitrine pour un cabinet de massage et thérapie ayurvédique",
     image: "/projects/suryoodaya.png",
     tags: ["Next.js", "Tailwind", "Stripe"],
-    url: "#",
+    url: "https://www.suryoodaya.com/",
     featured: true,
   },
   {
