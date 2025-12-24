@@ -12,21 +12,78 @@ export default function Hero() {
       <div className="absolute top-1/4 -left-32 w-96 h-96 bg-accent/20 rounded-full blur-[128px]" />
       <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent/10 rounded-full blur-[128px]" />
 
+      {/* Abstract animated shape - Main blob */}
+      <motion.div
+        className="absolute top-1/4 right-1/4 w-[500px] h-[500px] opacity-30"
+        animate={{
+          scale: [1, 1.2, 1.1, 1],
+          rotate: [0, 90, 180, 270, 360],
+          borderRadius: ["30% 70% 70% 30% / 30% 30% 70% 70%", "70% 30% 30% 70% / 70% 70% 30% 30%", "30% 70% 70% 30% / 70% 30% 70% 30%", "70% 30% 30% 70% / 30% 70% 30% 70%", "30% 70% 70% 30% / 30% 30% 70% 70%"],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        style={{
+          background: "linear-gradient(135deg, rgba(0, 246, 255, 0.4) 0%, rgba(0, 180, 200, 0.1) 50%, transparent 100%)",
+          filter: "blur(60px)",
+        }}
+      />
+
+      {/* Secondary morphing shape */}
+      <motion.div
+        className="absolute bottom-1/3 left-1/3 w-[300px] h-[300px] opacity-20"
+        animate={{
+          scale: [1, 1.3, 1],
+          x: [0, 50, 0],
+          y: [0, -30, 0],
+          borderRadius: ["60% 40% 30% 70% / 60% 30% 70% 40%", "30% 60% 70% 40% / 50% 60% 30% 60%", "60% 40% 30% 70% / 60% 30% 70% 40%"],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        style={{
+          background: "radial-gradient(circle, rgba(0, 246, 255, 0.5) 0%, transparent 70%)",
+          filter: "blur(40px)",
+        }}
+      />
+
+      {/* Orbiting ring */}
+      <motion.div
+        className="absolute top-1/2 left-1/2 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-accent/10 opacity-40"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+      >
+        <motion.div
+          className="absolute -top-2 left-1/2 w-4 h-4 rounded-full bg-accent/60"
+          animate={{ scale: [1, 1.5, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        />
+      </motion.div>
+
       {/* Floating decorative elements */}
       <motion.div
         className="absolute top-1/3 right-1/4 w-4 h-4 rounded-full bg-accent/60"
-        animate={{ y: [0, -20, 0] }}
+        animate={{ y: [0, -20, 0], opacity: [0.6, 1, 0.6] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         className="absolute bottom-1/3 left-1/4 w-6 h-6 rounded-full bg-accent/40"
-        animate={{ y: [0, 20, 0] }}
+        animate={{ y: [0, 20, 0], scale: [1, 1.2, 1] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         className="absolute top-1/2 right-1/3 w-3 h-3 rounded-full bg-accent/50"
-        animate={{ y: [0, -15, 0] }}
+        animate={{ y: [0, -15, 0], x: [0, 10, 0] }}
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute top-2/3 right-1/2 w-2 h-2 rounded-full bg-accent/70"
+        animate={{ y: [0, -25, 0], opacity: [0.7, 1, 0.7] }}
+        transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
