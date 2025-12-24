@@ -102,7 +102,7 @@ export default function Hero() {
 
             {/* Secondary floating card - Projet livré */}
             <motion.div
-              className="absolute -top-4 -left-12 z-20"
+              className="absolute -top-4 left-8 z-20"
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
             >
@@ -121,7 +121,7 @@ export default function Hero() {
 
             {/* Tech stack floating card */}
             <motion.div
-              className="absolute -bottom-8 -left-4 z-20"
+              className="absolute -bottom-16 left-4 z-20"
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
             >
