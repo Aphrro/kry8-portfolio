@@ -21,27 +21,6 @@ export default function Services() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left - Service cards with floating mockup */}
           <div className="relative order-2 lg:order-1">
-            {/* Floating payment mockup - HooBank style */}
-            <motion.div
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="hidden lg:block absolute -right-4 top-1/2 -translate-y-1/2 z-10 p-4 rounded-2xl bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/10 backdrop-blur-sm"
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 rounded-lg bg-accent/20 flex items-center justify-center">
-                  <span className="text-accent text-sm">💳</span>
-                </div>
-                <div>
-                  <p className="text-white text-xs font-medium">Paiement Stripe</p>
-                  <p className="text-text-muted text-[10px]">Intégré</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-green-400" />
-                <span className="text-green-400 text-xs">Connexion sécurisée</span>
-              </div>
-            </motion.div>
-
             {/* Service cards */}
             <div className="space-y-4 lg:pl-20">
               {services.map((service, index) => {
