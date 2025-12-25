@@ -1,7 +1,7 @@
 import { siteConfig } from '@/lib/data'
 
 export default function JsonLd() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://kry8.dev'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://kry8.studio'
 
   const personSchema = {
     '@context': 'https://schema.org',

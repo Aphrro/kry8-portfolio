@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   authors: [{ name: "KRY8" }],
   creator: "KRY8",
   publisher: "KRY8",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://kry8.dev"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://kry8.studio"),
   alternates: {
     canonical: "/",
   },
