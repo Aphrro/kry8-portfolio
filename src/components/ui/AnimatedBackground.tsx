@@ -100,30 +100,15 @@ export default function AnimatedBackground() {
         />
       </motion.div>
 
-      {/* Floating particles */}
+      {/* Floating particles - reduced for less distraction */}
       <motion.div
-        className="absolute top-[15%] right-[30%] w-4 h-4 rounded-full bg-accent/60"
-        animate={{ y: [0, -30, 0], opacity: [0.6, 1, 0.6] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute top-[45%] left-[15%] w-6 h-6 rounded-full bg-accent/40"
-        animate={{ y: [0, 25, 0], scale: [1, 1.2, 1] }}
+        className="absolute top-[20%] right-[25%] w-3 h-3 rounded-full bg-accent/30"
+        animate={{ y: [0, -20, 0], opacity: [0.3, 0.5, 0.3] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute top-[70%] right-[40%] w-3 h-3 rounded-full bg-accent/50"
-        animate={{ y: [0, -20, 0], x: [0, 15, 0] }}
-        transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute top-[85%] left-[35%] w-2 h-2 rounded-full bg-accent/70"
-        animate={{ y: [0, -35, 0], opacity: [0.7, 1, 0.7] }}
-        transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute top-[30%] left-[60%] w-5 h-5 rounded-full bg-accent/30"
-        animate={{ y: [0, 20, 0], x: [0, -10, 0], scale: [1, 1.1, 1] }}
+        className="absolute top-[65%] left-[20%] w-2 h-2 rounded-full bg-accent/25"
+        animate={{ y: [0, 15, 0], opacity: [0.25, 0.4, 0.25] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
     </div>

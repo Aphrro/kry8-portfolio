@@ -21,15 +21,29 @@ export default function Projects() {
           {projects.map((project, index) => (
             <Reveal key={project.id} delay={index * 100} variant="slide">
               <GlassCard className="h-full group cursor-pointer overflow-hidden">
-                {/* Project image placeholder */}
-                <div className="relative aspect-video mb-4 rounded-lg overflow-hidden bg-white/5">
+                {/* Project image placeholder with pattern */}
+                <div className="relative aspect-video mb-4 rounded-lg overflow-hidden bg-gradient-to-br from-secondary to-primary">
+                  {/* Dot pattern background */}
+                  <div
+                    className="absolute inset-0 opacity-20"
+                    style={{
+                      backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(0,246,255,0.3) 1px, transparent 0)',
+                      backgroundSize: '24px 24px'
+                    }}
+                  />
+
+                  {/* Project icon */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-accent/20 to-accent-dark/20 flex items-center justify-center">
-                      <span className="text-accent text-2xl font-bold">
+                    <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center shadow-lg shadow-accent/20">
+                      <span className="text-primary text-2xl font-bold">
                         {project.title.charAt(0)}
                       </span>
                     </div>
                   </div>
+
+                  {/* Bottom gradient fade */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent" />
+
                   {/* Hover overlay */}
                   <div className="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
