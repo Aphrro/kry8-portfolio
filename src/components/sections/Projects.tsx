@@ -1,44 +1,25 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { projects } from '@/lib/data'
 import SectionTitle from '../ui/SectionTitle'
 import GlassCard from '../ui/GlassCard'
+import Reveal from '../ui/Reveal'
 
 export default function Projects() {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  }
-
-  const item = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0 },
-  }
-
   return (
     <section id="projets" className="py-20 md:py-32 relative">
       {/* Background decoration */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[128px]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <SectionTitle>Mes Réalisations</SectionTitle>
+        <Reveal>
+          <SectionTitle>Mes Réalisations</SectionTitle>
+        </Reveal>
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-2 gap-6 lg:gap-8"
-        >
-          {projects.map((project) => (
-            <motion.div key={project.id} variants={item}>
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+          {projects.map((project, index) => (
+            <Reveal key={project.id} delay={index * 100} variant="slide">
               <GlassCard className="h-full group cursor-pointer overflow-hidden">
                 {/* Project image placeholder */}
                 <div className="relative aspect-video mb-4 rounded-lg overflow-hidden bg-white/5">
@@ -65,6 +46,8 @@ export default function Projects() {
                   </div>
                   <a
                     href={project.url}
+                    target={project.url.startsWith('http') ? '_blank' : undefined}
+                    rel={project.url.startsWith('http') ? 'noopener noreferrer' : undefined}
                     className="shrink-0 w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-accent group-hover:text-primary transition-all"
                   >
                     <ArrowUpRight className="w-5 h-5" />
@@ -83,9 +66,9 @@ export default function Projects() {
                   ))}
                 </div>
               </GlassCard>
-            </motion.div>
+            </Reveal>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

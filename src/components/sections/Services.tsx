@@ -1,10 +1,10 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { Globe, Smartphone, Rocket, type LucideIcon } from 'lucide-react'
 import { services, type ServiceIconName } from '@/lib/data'
 import SectionTitle from '../ui/SectionTitle'
 import GlassCard from '../ui/GlassCard'
+import Reveal from '../ui/Reveal'
 
 // Type-safe icon mapping
 const iconMap: Record<ServiceIconName, LucideIcon> = {
@@ -14,38 +14,19 @@ const iconMap: Record<ServiceIconName, LucideIcon> = {
 }
 
 export default function Services() {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  }
-
-  const item = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0 },
-  }
-
   return (
     <section id="services" className="py-20 md:py-32 bg-secondary/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle>Mes Services</SectionTitle>
+        <Reveal>
+          <SectionTitle>Mes Services</SectionTitle>
+        </Reveal>
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-6 lg:gap-8"
-        >
-          {services.map((service) => {
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+          {services.map((service, index) => {
             const Icon = iconMap[service.icon]
 
             return (
-              <motion.div key={service.title} variants={item}>
+              <Reveal key={service.title} delay={index * 100} variant="slide">
                 <GlassCard className="h-full text-center">
                   {/* Icon */}
                   <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent/20 to-accent-dark/20 flex items-center justify-center mx-auto mb-6">
@@ -75,10 +56,10 @@ export default function Services() {
                     ))}
                   </ul>
                 </GlassCard>
-              </motion.div>
+              </Reveal>
             )
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

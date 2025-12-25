@@ -1,47 +1,29 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { Check } from 'lucide-react'
 import { pricing } from '@/lib/data'
 import SectionTitle from '../ui/SectionTitle'
 import Button from '../ui/Button'
 import GradientText from '../ui/GradientText'
+import Reveal from '../ui/Reveal'
 
 export default function Pricing() {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  }
-
-  const item = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0 },
-  }
-
   return (
     <section id="tarifs" className="py-20 md:py-32 relative">
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-[128px]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <SectionTitle>Tarifs Indicatifs</SectionTitle>
+        <Reveal>
+          <SectionTitle>Tarifs Indicatifs</SectionTitle>
+        </Reveal>
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-6 lg:gap-8"
-        >
-          {pricing.map((plan) => (
-            <motion.div
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+          {pricing.map((plan, index) => (
+            <Reveal
               key={plan.title}
-              variants={item}
+              delay={index * 100}
+              variant="slide"
               className={`glass-card p-6 lg:p-8 relative ${
                 plan.popular
                   ? 'border-accent/50 md:scale-105 md:-my-4'
@@ -93,20 +75,16 @@ export default function Pricing() {
               >
                 Demander un devis
               </Button>
-            </motion.div>
+            </Reveal>
           ))}
-        </motion.div>
+        </div>
 
         {/* Disclaimer */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="text-text-muted text-sm text-center mt-8 max-w-2xl mx-auto"
-        >
-          * Tarifs indicatifs. Chaque projet fait l&apos;objet d&apos;un devis personnalisé selon vos besoins spécifiques.
-        </motion.p>
+        <Reveal delay={400} variant="fade" className="mt-8">
+          <p className="text-text-muted text-sm text-center max-w-2xl mx-auto">
+            * Tarifs indicatifs. Chaque projet fait l&apos;objet d&apos;un devis personnalisé selon vos besoins spécifiques.
+          </p>
+        </Reveal>
       </div>
     </section>
   )

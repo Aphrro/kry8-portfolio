@@ -1,13 +1,13 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
 import { Mail, Phone, Send, CheckCircle, AlertCircle } from 'lucide-react'
 import { z } from 'zod'
 import { siteConfig } from '@/lib/data'
 import SectionTitle from '../ui/SectionTitle'
 import GlassCard from '../ui/GlassCard'
 import Button from '../ui/Button'
+import Reveal from '../ui/Reveal'
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
 
@@ -83,25 +83,19 @@ export default function Contact() {
   return (
     <section id="contact" className="py-20 md:py-32 bg-secondary/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle>Démarrons votre projet</SectionTitle>
+        <Reveal>
+          <SectionTitle>Démarrons votre projet</SectionTitle>
+        </Reveal>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-text-secondary text-lg mb-12 max-w-2xl"
-        >
-          Une idée ? Un projet ? Discutons-en !
-        </motion.p>
+        <Reveal delay={100}>
+          <p className="text-text-secondary text-lg mb-12 max-w-2xl">
+            Une idée ? Un projet ? Discutons-en !
+          </p>
+        </Reveal>
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Contact info */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+          <Reveal delay={150} variant="slide">
             <GlassCard className="h-full" hover={false}>
               <h3 className="text-xl font-semibold text-white mb-6">
                 Coordonnées
@@ -144,15 +138,10 @@ export default function Contact() {
                 </p>
               </div>
             </GlassCard>
-          </motion.div>
+          </Reveal>
 
           {/* Contact form */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+          <Reveal delay={250} variant="slide">
             <GlassCard hover={false}>
               {status === 'success' ? (
                 <div className="flex flex-col items-center justify-center py-8 text-center">
@@ -291,7 +280,7 @@ export default function Contact() {
                 </form>
               )}
             </GlassCard>
-          </motion.div>
+          </Reveal>
         </div>
       </div>
     </section>
