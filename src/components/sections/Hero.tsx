@@ -5,7 +5,6 @@ import Button from '../ui/Button'
 import GradientText from '../ui/GradientText'
 import TypeWriter from '../ui/TypeWriter'
 import MagneticButton from '../ui/MagneticButton'
-import { siteConfig } from '@/lib/data'
 
 const heroWords = ['Solutions SaaS', 'Apps Web', 'Sites Vitrine', 'Plateformes']
 
@@ -24,24 +23,24 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-accent/10 to-transparent border border-accent/20 mb-6"
             >
-              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+              <span className="text-accent text-sm font-medium">✦</span>
               <span className="text-text-secondary text-sm">Disponible pour de nouveaux projets</span>
             </motion.div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              Développeur Web
+              La Nouvelle
               <br />
-              & Créateur de
+              <GradientText>Génération</GradientText>
               <br />
-              <GradientText>
+              <span className="text-white">
                 <TypeWriter words={heroWords} />
-              </GradientText>
+              </span>
             </h1>
 
-            <p className="text-text-secondary text-lg mb-8 max-w-lg">
-              {siteConfig.description}
+            <p className="text-text-secondary text-lg mb-8 max-w-lg leading-relaxed">
+              Expert Next.js & React, je crée des applications web modernes et performantes pour les entreprises en Suisse et en France.
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -58,83 +57,120 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Right content - Floating mockups */}
+          {/* Right content - HooBank style floating elements */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative hidden lg:block"
+            className="relative hidden lg:block h-[500px]"
           >
-            {/* Main card mockup */}
+            {/* Main dashboard card */}
             <motion.div
-              className="relative z-10"
-              animate={{ y: [0, -15, 0] }}
+              className="absolute top-8 right-0 z-10"
+              animate={{ y: [0, -12, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             >
-              <div className="glass-card p-6 max-w-sm ml-auto">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center">
-                    <span className="text-primary font-bold">K8</span>
+              <div className="w-72 p-5 rounded-2xl bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/10 backdrop-blur-sm shadow-2xl">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center">
+                      <span className="text-primary font-bold text-sm">K8</span>
+                    </div>
+                    <div>
+                      <p className="text-white font-semibold text-sm">KRY8 Studio</p>
+                      <p className="text-text-muted text-xs">Expert Next.js</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-white font-semibold">KRY8 Studio</p>
-                    <p className="text-text-secondary text-sm">Next.js Expert</p>
-                  </div>
+                  <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                 </div>
-                <div className="space-y-2">
-                  <div className="h-2 bg-white/10 rounded-full w-full" />
-                  <div className="h-2 bg-white/10 rounded-full w-4/5" />
-                  <div className="h-2 bg-white/10 rounded-full w-3/5" />
+                {/* Code preview lines */}
+                <div className="space-y-2 p-3 rounded-lg bg-primary/50">
+                  <div className="flex items-center gap-2">
+                    <span className="text-accent text-xs">const</span>
+                    <span className="text-white text-xs">app</span>
+                    <span className="text-text-muted text-xs">=</span>
+                    <span className="text-green-400 text-xs">Next.js</span>
+                  </div>
+                  <div className="h-1.5 bg-white/10 rounded w-4/5" />
+                  <div className="h-1.5 bg-white/10 rounded w-3/5" />
                 </div>
               </div>
             </motion.div>
 
-            {/* Secondary floating card - Projet livré */}
+            {/* Floating notification card */}
             <motion.div
-              className="absolute top-0 -left-4 z-20"
-              animate={{ y: [0, 10, 0] }}
+              className="absolute top-0 left-4 z-20"
+              animate={{ y: [0, 8, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
             >
-              <div className="glass-card p-4">
+              <div className="p-4 rounded-2xl bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/10 backdrop-blur-sm">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
-                    <span className="text-green-400 text-xl">✓</span>
+                    <span className="text-green-400 text-lg">✓</span>
                   </div>
                   <div>
-                    <p className="text-white text-sm font-medium">Projet livré</p>
-                    <p className="text-text-muted text-xs">100% satisfait</p>
+                    <p className="text-white text-sm font-medium">Projet livré !</p>
+                    <p className="text-text-muted text-xs">Client satisfait</p>
                   </div>
                 </div>
               </div>
             </motion.div>
 
-            {/* Tech stack floating card */}
+            {/* Tech stack card */}
             <motion.div
-              className="absolute -bottom-14 left-8 z-20"
+              className="absolute bottom-20 left-0 z-20"
               animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
             >
-              <div className="glass-card p-3 flex gap-2">
-                {['Next.js', 'React', 'Tailwind'].map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium"
-                  >
-                    {tech}
-                  </span>
-                ))}
+              <div className="p-4 rounded-2xl bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/10 backdrop-blur-sm">
+                <p className="text-text-muted text-xs mb-2 uppercase tracking-wider">Technologies</p>
+                <div className="flex gap-2">
+                  {['Next.js', 'React', 'Tailwind'].map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1.5 rounded-lg bg-accent/10 text-accent text-xs font-medium border border-accent/20"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
             </motion.div>
 
-            {/* Decorative sphere */}
+            {/* Analytics card */}
             <motion.div
-              className="absolute -top-8 right-0 w-24 h-24 rounded-full bg-gradient-to-br from-accent/40 to-transparent blur-sm"
-              animate={{ scale: [1, 1.1, 1] }}
+              className="absolute bottom-0 right-8 z-20"
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+            >
+              <div className="p-4 rounded-2xl bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/10 backdrop-blur-sm">
+                <p className="text-text-muted text-xs mb-2">Performance</p>
+                <div className="flex items-end gap-1">
+                  {[40, 65, 45, 80, 55, 90, 70].map((h, i) => (
+                    <div
+                      key={i}
+                      className="w-2 rounded-t bg-gradient-to-t from-accent to-accent-dark"
+                      style={{ height: `${h * 0.4}px` }}
+                    />
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Decorative elements */}
+            <motion.div
+              className="absolute top-1/3 right-1/4 w-32 h-32 rounded-full bg-accent/20 blur-[60px]"
+              animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div
+              className="absolute bottom-1/4 left-1/4 w-20 h-20 rounded-full bg-accent/30 blur-[40px]"
+              animate={{ scale: [1.2, 1, 1.2], opacity: [0.4, 0.6, 0.4] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             />
           </motion.div>
 
-          {/* Mobile mockup - visible only on mobile/tablet */}
+          {/* Mobile mockup */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -144,22 +180,22 @@ export default function Hero() {
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="glass-card p-4 max-w-[280px]"
+              className="p-5 rounded-2xl bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/10 backdrop-blur-sm max-w-[280px]"
             >
-              <div className="flex items-center gap-3 mb-3">
+              <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center">
                   <span className="text-primary font-bold text-sm">K8</span>
                 </div>
                 <div>
                   <p className="text-white font-semibold text-sm">KRY8 Studio</p>
-                  <p className="text-text-muted text-xs">Next.js Expert</p>
+                  <p className="text-text-muted text-xs">Expert Next.js</p>
                 </div>
               </div>
               <div className="flex gap-2">
                 {['Next.js', 'React', 'Tailwind'].map((tech) => (
                   <span
                     key={tech}
-                    className="px-2 py-1 rounded-full bg-accent/10 text-accent text-xs"
+                    className="px-2 py-1 rounded-lg bg-accent/10 text-accent text-xs border border-accent/20"
                   >
                     {tech}
                   </span>
