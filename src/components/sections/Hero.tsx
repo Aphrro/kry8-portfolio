@@ -3,7 +3,11 @@
 import { motion } from 'framer-motion'
 import Button from '../ui/Button'
 import GradientText from '../ui/GradientText'
+import TypeWriter from '../ui/TypeWriter'
+import MagneticButton from '../ui/MagneticButton'
 import { siteConfig } from '@/lib/data'
+
+const heroWords = ['Solutions SaaS', 'Apps Web', 'Sites Vitrine', 'Plateformes']
 
 export default function Hero() {
   return (
@@ -31,7 +35,9 @@ export default function Hero() {
               <br />
               & Créateur de
               <br />
-              <GradientText>Solutions SaaS</GradientText>
+              <GradientText>
+                <TypeWriter words={heroWords} />
+              </GradientText>
             </h1>
 
             <p className="text-text-secondary text-lg mb-8 max-w-lg">
@@ -39,12 +45,16 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <Button href="#projets" icon>
-                Voir mes projets
-              </Button>
-              <Button href="#contact" variant="secondary">
-                Me contacter
-              </Button>
+              <MagneticButton>
+                <Button href="#projets" icon>
+                  Voir mes projets
+                </Button>
+              </MagneticButton>
+              <MagneticButton>
+                <Button href="#contact" variant="secondary">
+                  Me contacter
+                </Button>
+              </MagneticButton>
             </div>
           </motion.div>
 
@@ -122,6 +132,40 @@ export default function Hero() {
               animate={{ scale: [1, 1.1, 1] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />
+          </motion.div>
+
+          {/* Mobile mockup - visible only on mobile/tablet */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="lg:hidden flex justify-center mt-8"
+          >
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              className="glass-card p-4 max-w-[280px]"
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center">
+                  <span className="text-primary font-bold text-sm">K8</span>
+                </div>
+                <div>
+                  <p className="text-white font-semibold text-sm">KRY8 Studio</p>
+                  <p className="text-text-muted text-xs">Next.js Expert</p>
+                </div>
+              </div>
+              <div className="flex gap-2">
+                {['Next.js', 'React', 'Tailwind'].map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-2 py-1 rounded-full bg-accent/10 text-accent text-xs"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

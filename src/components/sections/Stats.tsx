@@ -2,6 +2,7 @@
 
 import { stats } from '@/lib/data'
 import GradientText from '../ui/GradientText'
+import CountUp from '../ui/CountUp'
 import Reveal from '../ui/Reveal'
 
 export default function Stats() {
@@ -21,7 +22,9 @@ export default function Stats() {
               )}
 
               <p className="text-3xl md:text-4xl font-bold mb-2">
-                <GradientText>{stat.value}</GradientText>
+                <GradientText>
+                  <CountUp end={stat.value} duration={2000} />
+                </GradientText>
               </p>
               <p className="text-text-secondary text-sm uppercase tracking-wider">
                 {stat.label}

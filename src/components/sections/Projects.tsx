@@ -5,6 +5,7 @@ import { projects } from '@/lib/data'
 import SectionTitle from '../ui/SectionTitle'
 import GlassCard from '../ui/GlassCard'
 import Reveal from '../ui/Reveal'
+import TiltCard from '../ui/TiltCard'
 
 export default function Projects() {
   return (
@@ -20,7 +21,8 @@ export default function Projects() {
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
           {projects.map((project, index) => (
             <Reveal key={project.id} delay={index * 100} variant="slide">
-              <GlassCard className="h-full group cursor-pointer overflow-hidden">
+              <TiltCard className="h-full">
+                <GlassCard className="h-full group cursor-pointer overflow-hidden">
                 {/* Project image placeholder with pattern */}
                 <div className="relative aspect-video mb-4 rounded-lg overflow-hidden bg-gradient-to-br from-secondary to-primary">
                   {/* Dot pattern background */}
@@ -80,6 +82,7 @@ export default function Projects() {
                   ))}
                 </div>
               </GlassCard>
+              </TiltCard>
             </Reveal>
           ))}
         </div>

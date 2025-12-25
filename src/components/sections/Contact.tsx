@@ -1,13 +1,15 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { Mail, Phone, Send, CheckCircle, AlertCircle } from 'lucide-react'
+import { Mail, Phone, Send, CheckCircle, AlertCircle, MapPin } from 'lucide-react'
 import { z } from 'zod'
 import { siteConfig } from '@/lib/data'
 import SectionTitle from '../ui/SectionTitle'
 import GlassCard from '../ui/GlassCard'
 import Button from '../ui/Button'
 import Reveal from '../ui/Reveal'
+import CopyButton from '../ui/CopyButton'
+import Confetti from '../ui/Confetti'
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
 
@@ -82,6 +84,7 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-20 md:py-32 bg-secondary/30">
+      <Confetti active={status === 'success'} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionTitle>Démarrons votre projet</SectionTitle>
@@ -102,38 +105,51 @@ export default function Contact() {
               </h3>
 
               <div className="space-y-6">
-                <a
-                  href={`mailto:${siteConfig.email}`}
-                  className="flex items-center gap-4 text-text-secondary hover:text-accent transition-colors group"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                    <Mail className="w-5 h-5 text-accent" />
-                  </div>
-                  <div>
-                    <p className="text-text-muted text-sm">Email</p>
-                    <p className="text-white">{siteConfig.email}</p>
-                  </div>
-                </a>
+                <div className="flex items-center gap-4 group">
+                  <a
+                    href={`mailto:${siteConfig.email}`}
+                    className="flex items-center gap-4 text-text-secondary hover:text-accent transition-colors flex-1"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                      <Mail className="w-5 h-5 text-accent" />
+                    </div>
+                    <div>
+                      <p className="text-text-muted text-sm">Email</p>
+                      <p className="text-white">{siteConfig.email}</p>
+                    </div>
+                  </a>
+                  <CopyButton text={siteConfig.email} />
+                </div>
 
-                <a
-                  href={`tel:${siteConfig.phone.replace(/\s/g, '')}`}
-                  className="flex items-center gap-4 text-text-secondary hover:text-accent transition-colors group"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                    <Phone className="w-5 h-5 text-accent" />
+                <div className="flex items-center gap-4 group">
+                  <a
+                    href={`tel:${siteConfig.phone.replace(/\s/g, '')}`}
+                    className="flex items-center gap-4 text-text-secondary hover:text-accent transition-colors flex-1"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                      <Phone className="w-5 h-5 text-accent" />
+                    </div>
+                    <div>
+                      <p className="text-text-muted text-sm">Téléphone</p>
+                      <p className="text-white">{siteConfig.phone}</p>
+                    </div>
+                  </a>
+                  <CopyButton text={siteConfig.phone} />
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
+                    <MapPin className="w-5 h-5 text-accent" />
                   </div>
                   <div>
-                    <p className="text-text-muted text-sm">Téléphone</p>
-                    <p className="text-white">{siteConfig.phone}</p>
+                    <p className="text-text-muted text-sm">Localisation</p>
+                    <p className="text-white">{siteConfig.location}</p>
                   </div>
-                </a>
+                </div>
               </div>
 
               <div className="mt-8 pt-8 border-t border-white/10">
-                <p className="text-text-secondary text-sm">
-                  Basé en <span className="text-white">{siteConfig.location}</span>
-                </p>
-                <p className="text-text-muted text-sm mt-2">
+                <p className="text-text-muted text-sm">
                   Je travaille avec des clients dans toute l&apos;Europe francophone.
                 </p>
               </div>

@@ -9,10 +9,24 @@ import GradientText from '../ui/GradientText'
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('accueil')
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
+
+      // Detect active section
+      const sections = navLinks.map((link) => link.href.replace('#', ''))
+      for (const section of sections.reverse()) {
+        const element = document.getElementById(section)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          if (rect.top <= 150) {
+            setActiveSection(section)
+            break
+          }
+        }
+      }
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
@@ -40,15 +54,27 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-text-secondary hover:text-white transition-colors duration-200 text-sm font-medium"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.replace('#', '')
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className={`relative text-sm font-medium transition-colors duration-200 ${
+                    isActive ? 'text-white' : 'text-text-secondary hover:text-white'
+                  }`}
+                >
+                  {link.label}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeSection"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-accent to-accent-dark"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </a>
+              )
+            })}
           </div>
 
           {/* Mobile Menu Button */}
@@ -73,16 +99,21 @@ export default function Navbar() {
             className="md:hidden bg-primary/95 backdrop-blur-lg border-b border-white/5"
           >
             <div className="px-4 py-4 space-y-3">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-2 text-text-secondary hover:text-white transition-colors duration-200"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.href.replace('#', '')
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`block py-2 transition-colors duration-200 ${
+                      isActive ? 'text-accent' : 'text-text-secondary hover:text-white'
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                )
+              })}
             </div>
           </motion.div>
         )}
